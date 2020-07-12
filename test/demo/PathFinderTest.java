@@ -23,4 +23,15 @@ public class PathFinderTest extends TestCase {
         assertEquals(4, result.get(1).getEnd().intValue());
 
     }
+
+    public void testPathFind_simpleLoop() {
+        Map<Integer, Integer> predecessorMap = Map.ofEntries(
+                Map. entry(0, 0));
+
+        List<Edge<Integer>> result = subject.findPath(0, 0, predecessorMap);
+
+        assertEquals(1, result.size());
+        assertEquals(0, result.get(0).getStart().intValue());
+        assertEquals(0, result.get(0).getEnd().intValue());
+    }
 }

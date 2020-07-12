@@ -135,13 +135,24 @@ public class GraphLibTest extends TestCase {
     {1, 0},
     {0, 0},
     */
-    public void testGetPath_simpleloop_startEqualsEnd() {
+    public void testGetPath_simpleloopDirected_startEqualsEnd() {
         Graph<Integer> graph = new Graph<>(true);
         graph.addEdge(0, 0);
 
         List<Edge<Integer>> result = subject.getPath(graph, 0, 0);
 
-        Assert.assertTrue(result.isEmpty());
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals(List.of(new Edge<>(0, 0)), result);
+    }
+
+   public void testGetPath_simpleloopUndirected_startEqualsEnd() {
+        Graph<Integer> graph = new Graph<>(false);
+        graph.addEdge(0, 0);
+
+        List<Edge<Integer>> result = subject.getPath(graph, 0, 0);
+
+        Assert.assertEquals(1, result.size());
+        Assert.assertEquals(List.of(new Edge<>(0, 0)), result);
     }
 
     public void testGetPath_StringType_positive() {
